@@ -10,18 +10,10 @@ const Formulario = ({ onAddCol }) => {
     const [telefono, setTelefono] = useState("");
     const [alertColor, setAlertColor] = useState("");
     const [alertMessage, setAlertMessage] = useState("");
+    const [formularioCompleto, setFormularioCompleto] = useState(false);
 
     const sendForm = (e) => {
         e.preventDefault();
-
-        if (!nombre || !correo || !edad || !cargo || !telefono) {
-            setAlertMessage("Faltan campos por completar!");
-            setAlertColor("danger");
-        } else {
-            setAlertMessage("Agregado exitosamente!");
-            setAlertColor("success");
-        }
-
         const newCol = {
             id: Date.now(),
             nombre,
@@ -32,11 +24,14 @@ const Formulario = ({ onAddCol }) => {
         };
 
         onAddCol(newCol);
-        setNombre("");
-        setCorreo("");
-        setEdad("");
-        setCargo("");
-        setTelefono("");
+
+        if (!nombre || !correo || !edad || !cargo || !telefono) {
+            setAlertMessage("Faltan campos por completar!");
+            setAlertColor("danger");
+        } else {
+            setAlertMessage("Agregado exitosamente!");
+            setAlertColor("success");
+        }
     };
 
     return (
